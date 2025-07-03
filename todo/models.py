@@ -6,12 +6,11 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     completed = models.BooleanField(default=False)
     posted_at = models.DateTimeField(default=timezone.now)
-    due_at = models.DateTimeField(null=True,blank=True)
+    due_at = models.DateTimeField(null=True, blank=True)
 
-
-  def is_overdue(self, now=None):
-    if self.due_at is None:
-        return False
-    if now is None:
-        now = timezone.now()
-    return self.due_at < now
+    def is_overdue(self, now=None):
+        if self.due_at is None:
+            return False
+        if now is None:
+            now = timezone.now()
+        return self.due_at < now
